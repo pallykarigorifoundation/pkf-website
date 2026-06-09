@@ -11,7 +11,7 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const defaults = { ease: "power3.out" };
+      const defaults = { ease: "power3.out" };//
       // "onEnter onLeave onEnterBack onLeaveBack"
       // play  | reverse | play       | reverse  → repeatable in both directions
       const trigger = { start: "top 75%", end: "bottom 10%", toggleActions: "play reverse play reverse" };
