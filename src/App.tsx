@@ -8,6 +8,7 @@ import CoursesPage from "./pages/CoursesPage";
 import CourseDetailPage from "./pages/CourseDetailPage";
 import DonationDashboard from "./pages/DonationDashboard";
 import ScrollToTop from "./components/ScrollToTop";
+import { initLenis, destroyLenis } from "./lib/lenis";
 
 function TitleHandler() {
   const { t } = useTranslation();
@@ -30,6 +31,11 @@ function TitleHandler() {
 }
 
 function App() {
+  useEffect(() => {
+    initLenis();
+    return () => destroyLenis();
+  }, []);
+
   return (
     <Router>
       <TitleHandler />
