@@ -49,8 +49,8 @@ export default function Impact() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="impact" className="bg-cream dark:bg-black py-16 lg:py-24 px-[5vw] relative overflow-hidden">
-      <div className="max-w-[1280px] mx-auto relative z-10">
+    <section ref={sectionRef} id="impact" className="bg-cream dark:bg-black py-16 lg:py-24 relative overflow-hidden">
+      <div className="w-full px-8 lg:px-16 relative z-10">
         <div className="impact-label text-[0.72rem] font-bold tracking-widest text-lime uppercase mb-8">{t("impact.label")}</div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-end mb-16">

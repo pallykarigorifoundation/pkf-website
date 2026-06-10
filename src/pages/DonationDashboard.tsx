@@ -149,7 +149,7 @@ export default function DonationDashboard() {
 
   // ── Donation form ─────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-cream dark:bg-black py-20 px-[5vw]">
+    <div className="min-h-screen bg-cream dark:bg-black py-20 px-8 lg:px-16">
       <div className="max-w-xl mx-auto">
 
         {/* Header */}

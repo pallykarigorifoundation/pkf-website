@@ -352,8 +352,8 @@ export default function TeamSection() {
 
   return (
     <>
-      <section ref={sectionRef} id="team" className="bg-cream dark:bg-black py-16 lg:py-24 px-[5vw]">
-        <div className="max-w-[1280px] mx-auto">
+      <section ref={sectionRef} id="team" className="bg-cream dark:bg-black py-16 lg:py-24">
+        <div className="w-full px-8 lg:px-16">
 
           {/* Header */}
           <div className="team-label text-[0.72rem] font-bold tracking-widest text-lime uppercase mb-8">

@@ -67,8 +67,8 @@ export default function About() {
   ];
 
   return (
-    <section ref={sectionRef} id="about" className="bg-white dark:bg-black py-16 lg:py-24 px-[5vw]">
-      <div className="max-w-[1280px] mx-auto relative z-10">
+    <section ref={sectionRef} id="about" className="bg-white dark:bg-black py-16 lg:py-24">
+      <div className="w-full px-8 lg:px-16 relative z-10">
         <div className="about-label flex items-center gap-4 mb-12 text-[0.72rem] font-bold tracking-widest text-olive dark:text-lime-light uppercase after:content-[''] after:flex-1 after:h-px after:bg-sand/40">
           {t("about.label")}
         </div>

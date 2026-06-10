@@ -79,7 +79,7 @@ export default function Navbar() {
             : "bg-transparent py-5"
           }`}
       >
-        <div className="max-w-[1280px] mx-auto px-5 lg:px-10 flex items-center justify-between gap-6">
+        <div className="w-full px-8 lg:px-16 grid grid-cols-[auto_1fr_auto] items-center gap-6">
 
           {/* ── BRAND ── */}
           <Link
@@ -98,7 +98,7 @@ export default function Navbar() {
           </Link>
 
           {/* ── DESKTOP LINKS ── */}
-          <ul className="hidden lg:flex items-center gap-1 list-none">
+          <ul className="hidden lg:flex items-center justify-center gap-1 list-none">
             {links.map((l) => (
               <li key={l.id} className="nb-link">
                 {l.path.startsWith("/#") ? (

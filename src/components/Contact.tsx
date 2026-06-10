@@ -62,8 +62,8 @@ export default function Contact() {
   ];
 
   return (
-    <section ref={sectionRef} id="contact" className="bg-white dark:bg-black dark:text-white py-16 lg:py-24 px-[5vw]">
-      <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start relative z-10">
+    <section ref={sectionRef} id="contact" className="bg-white dark:bg-black dark:text-white py-16 lg:py-24">
+      <div className="w-full px-8 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start relative z-10">
         <div className="contact-left">
           <div className="contact-label text-[0.72rem] font-bold tracking-widest text-lime uppercase mb-6">{t("contact.label")}</div>
           <h2 className="contact-title font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-olive dark:text-lime-light leading-[1.1] mb-6">

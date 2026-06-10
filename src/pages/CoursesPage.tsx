@@ -208,8 +208,8 @@ export default function CoursesPage() {
 
   return (
     <>
-      <div ref={pageRef} className="bg-cream dark:bg-black min-h-screen pt-32 pb-20 px-[5vw]">
-      <div className="max-w-[1280px] mx-auto">
+      <div ref={pageRef} className="bg-cream dark:bg-black min-h-screen pt-32 pb-20 px-8 lg:px-16">
+      <div className="w-full">
         <header className="mb-16">
           <div className="flex items-center gap-2 text-sm font-medium text-text-muted mb-4 page-header-item">
             <Link to="/" className="hover:text-lime transition-colors">{t("nav.home")}</Link>

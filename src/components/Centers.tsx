@@ -62,12 +62,12 @@ export default function Centers() {
   ];
 
   return (
-    <section ref={sectionRef} id="centers" className="bg-olive dark:bg-zinc-950 py-16 lg:py-24 px-[5vw] relative overflow-hidden">
+    <section ref={sectionRef} id="centers" className="bg-olive dark:bg-zinc-950 py-16 lg:py-24 relative overflow-hidden">
       {/* Decorative circles */}
       <div className="absolute top-[-80px] right-[-80px] w-[400px] h-[400px] rounded-[50%_0_50%_0] bg-white/[0.01] dark:bg-white/[0.03] pointer-events-none" />
       <div className="absolute bottom-[-60px] left-[-60px] w-[300px] h-[300px] rounded-[0_50%_0_50%] bg-white/[0.01] dark:bg-white/[0.03] pointer-events-none" />
 
-      <div className="max-w-[1280px] mx-auto relative z-10">
+      <div className="w-full px-8 lg:px-16 relative z-10">
         <div className="centers-label text-[0.72rem] font-bold tracking-widest text-lime-light uppercase mb-6">{t("centers.label")}</div>
 
         <h2 className="centers-title font-display text-4xl sm:text-5xl lg:text-7xl font-normal text-white leading-[1.1] mb-3">

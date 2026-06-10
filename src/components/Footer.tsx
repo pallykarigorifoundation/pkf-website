@@ -21,8 +21,8 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-text-dark dark:bg-black py-16 lg:py-20 px-[5vw]">
-      <div className="max-w-[1280px] mx-auto">
+    <footer className="bg-text-dark dark:bg-black py-16 lg:py-20">
+      <div className="w-full px-8 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2fr] gap-12 lg:gap-20 pb-12 border-b border-white/10 mb-8">
           <div className="flex flex-col gap-5">
             <div className="flex items-center gap-3.5">

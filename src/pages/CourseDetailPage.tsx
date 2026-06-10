@@ -43,8 +43,8 @@ export default function CourseDetailPage() {
   const isAdvance = course.level === "Advance";
 
   return (
-    <div className="min-h-screen bg-cream dark:bg-black pt-32 pb-20 px-[5vw]">
-      <div className="max-w-[1280px] mx-auto detail-content">
+    <div className="min-h-screen bg-cream dark:bg-black pt-32 pb-20 px-8 lg:px-16">
+      <div className="w-full detail-content">
         {/* Breadcrumbs */}
         <div className="flex items-center gap-2 text-sm font-medium text-text-muted mb-8">
           <Link to="/" className="hover:text-lime transition-colors">{t("nav.home")}</Link>
