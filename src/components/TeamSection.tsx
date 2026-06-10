@@ -78,32 +78,52 @@ const members: TeamMember[] = [
     instagram: "https://www.instagram.com/_.rahul.c_/",
   },
   {
-    id: "member5",
-    nameKey: "team.members.member5.name",
-    roleKey: "team.members.member5.role",
-    descKey: "team.members.member5.desc",
-    bioKey: "team.members.member5.bio",
-    image: "/santam.webp",
-    initials: "SR",
-    locationKey: "team.locations.kalimpong",
+    id: "bina",
+    nameKey: "team.members.bina.name",
+    roleKey: "team.members.bina.role",
+    descKey: "team.members.bina.desc",
+    bioKey: "team.members.bina.bio",
+    image: "",
+    initials: "BO",
+    locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.operations", "team.skills_list.tech_support", "team.skills_list.full_stack_dev"],
-    linkedin: "https://www.linkedin.com/in/santamk/",
-    facebook: "https://www.facebook.com/santamk",
+    skillKeys: ["team.skills_list.data_advisory", "team.skills_list.analysis", "team.skills_list.rural_dev"],
   },
   {
-    id: "member6",
-    nameKey: "team.members.member6.name",
-    roleKey: "team.members.member6.role",
-    descKey: "team.members.member6.desc",
-    bioKey: "team.members.member6.bio",
-    image: "/soumajit.jpg",
-    initials: "KM",
-    locationKey: "team.locations.behala_kolkata",
+    id: "mrinnmoy",
+    nameKey: "team.members.mrinnmoy.name",
+    roleKey: "team.members.mrinnmoy.role",
+    descKey: "team.members.mrinnmoy.desc",
+    bioKey: "team.members.mrinnmoy.bio",
+    image: "",
+    initials: "MR",
+    locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.design", "team.skills_list.media", "team.skills_list.clickup"],
-    linkedin: "https://www.linkedin.com/in/cykeek/",
-    instagram: "https://www.instagram.com/cykeek_sensei/",
+    skillKeys: ["team.skills_list.public_health", "team.skills_list.research", "team.skills_list.comm_outreach"],
+  },
+  {
+    id: "debasmita",
+    nameKey: "team.members.debasmita.name",
+    roleKey: "team.members.debasmita.role",
+    descKey: "team.members.debasmita.desc",
+    bioKey: "team.members.debasmita.bio",
+    image: "",
+    initials: "DB",
+    locationKey: "team.locations.plassey_nadia",
+    joinYearKey: "team.year_2026",
+    skillKeys: ["team.skills_list.humanities", "team.skills_list.research", "team.skills_list.education"],
+  },
+  {
+    id: "surja",
+    nameKey: "team.members.surja.name",
+    roleKey: "team.members.surja.role",
+    descKey: "team.members.surja.desc",
+    bioKey: "team.members.surja.bio",
+    image: "",
+    initials: "SB",
+    locationKey: "team.locations.plassey_nadia",
+    joinYearKey: "team.year_2026",
+    skillKeys: ["team.skills_list.research", "team.skills_list.strategic_oversight", "team.skills_list.rural_dev"],
   },
 ];
 
@@ -362,24 +382,28 @@ export default function TeamSection() {
                 <div
                   className="relative h-[420px] sm:h-[500px] flex flex-col justify-between p-6 lg:p-8"
                   style={{
-                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.70) 100%), url(${member.image})`,
+                    backgroundImage: member.image
+                      ? `linear-gradient(to bottom, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.70) 100%), url(${member.image})`
+                      : `linear-gradient(to bottom, rgba(30,40,20,0.85) 0%, rgba(10,20,5,0.95) 100%)`,
                     backgroundSize: "cover",
                     backgroundPosition: "center top",
                   }}
                 >
+                  {/* Initials for members without photo */}
+                  {!member.image && (
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <span className="font-display text-8xl font-bold text-lime/20">{member.initials}</span>
+                    </div>
+                  )}
+
                   {/* Bottom content */}
                   <div className="flex flex-col gap-2 mt-auto">
-                    {/* Role label — always visible */}
                     <p className="text-[9px] font-bold tracking-[0.18em] uppercase text-lime-light">
                       {t(member.roleKey)}
                     </p>
-
-                    {/* Name — always visible */}
                     <div className="font-display text-xl font-normal text-white drop-shadow-lg leading-none truncate">
                       {t(member.nameKey)}
                     </div>
-
-                    {/* Desc + skills + view profile — hidden until hover */}
                     <div className="overflow-hidden max-h-0 group-hover:max-h-40 transition-all duration-300 ease-in-out flex flex-col gap-1.5 pt-0 group-hover:pt-1">
                       <div className="flex gap-2 items-start">
                         <span className="text-base font-bold text-lime-light leading-none flex-shrink-0">+</span>
@@ -400,6 +424,36 @@ export default function TeamSection() {
                   </div>
                 </div>
               </button>
+            ))}
+
+            {/* Empty placeholder cards */}
+            {[
+              { role: "Community Head" },
+              { role: "Program Manager" },
+              { role: "Volunteer" },
+            ].map((p) => (
+              <div
+                key={p.role}
+                className="team-card relative rounded-[20px] overflow-hidden border border-dashed border-white/20 dark:border-white/10 bg-olive/5 dark:bg-zinc-900/40 h-[420px] sm:h-[500px] flex flex-col items-center justify-center gap-4 select-none"
+              >
+                {/* Pulsing avatar placeholder */}
+                <div className="relative flex items-center justify-center mb-1">
+                  <span className="absolute w-20 h-20 rounded-full bg-lime/10 animate-ping" style={{ animationDuration: "2.5s" }} />
+                  <span className="relative z-10 w-16 h-16 rounded-full border-2 border-dashed border-lime/30 flex items-center justify-center">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-lime/40">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </span>
+                </div>
+                <div className="text-center px-6">
+                  <p className="text-[9px] font-bold tracking-[0.18em] uppercase text-lime/50 mb-2">Position Open</p>
+                  <p className="font-display text-lg font-semibold text-white/30">{p.role}</p>
+                </div>
+                <div className="inline-flex items-center gap-2 bg-lime/10 border border-lime/20 text-lime/60 text-[0.65rem] font-semibold tracking-widest uppercase py-1 px-3 rounded-full">
+                  <span className="w-1.5 h-1.5 rounded-full bg-lime/50 animate-pulse" />
+                  Coming Soon
+                </div>
+              </div>
             ))}
           </div>
 

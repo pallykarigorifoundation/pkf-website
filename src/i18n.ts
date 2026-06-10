@@ -373,7 +373,12 @@ i18n
               full_stack_dev: "Full Stack Development",
               design: "UI/UX Design",
               media: "Media",
-              clickup: "Clickup God"
+              clickup: "Clickup God",
+              data_advisory: "Data Advisory",
+              analysis: "Data Analysis",
+              public_health: "Public Health",
+              research: "Research",
+              humanities: "Humanities"
             },
             members: {
               rabiul: {
@@ -396,21 +401,45 @@ i18n
               },
               member4: {
                 name: "Rahul Chettri",
-                role: "Volunteer",
+                role: "Head of Operations",
                 desc: "Building digital confidence among rural youth through practical technology training.",
                 bio: "Rahul Chettri leads the Data & Technology track at PKF, helping rural youth navigate the digital world with confidence. From basic IT literacy to AI tools and web development, he designs learning experiences that are practical, jargon-free and deeply relevant to rural contexts."
               },
               member5: {
-                name: "Santam Kumai",
-                role: "Volunteer",
-                desc: "Facilitating wellness and Ayurveda-based programs rooted in traditional knowledge.",
-                bio: "Santam Kumai is a trained wellness practitioner who brings together modern health science and traditional Ayurvedic wisdom. He runs the wellness track across both campuses, training local youth to become health educators and wellness instructors for their own communities."
+                name: "Bina Oraon",
+                role: "Data Advisor",
+                desc: "Guiding data strategy and evidence-based decision making across programs.",
+                bio: "Bina Oraon serves as Data Advisor for Pally Karigori Foundation, bringing expertise in data collection, analysis and community research. She helps the foundation make evidence-based decisions to maximise impact in rural communities."
               },
               member6: {
-                name: "Soumajit Das",
-                role: "Volunteer",
-                desc: "Equipping students with creative tools to tell rural stories and build careers in media.",
-                bio: "Soumajit Das teaches photography, video editing and design literacy at PKF. He believes that every rural community has stories worth telling and the youth who tell them deserve professional tools. He guides students from basic visual literacy to building full creative portfolios."
+                name: "Mrinnmoy",
+                role: "Public Health Research",
+                desc: "Leading public health research and community wellness initiatives.",
+                bio: "Mrinnmoy leads public health research at Pally Karigori Foundation, focusing on understanding the health challenges of rural communities. His work informs the Foundation's wellness programs and ensures they address real grassroots health needs."
+              },
+              bina: {
+                name: "Bina Oraon",
+                role: "Data Advisor",
+                desc: "Guiding data strategy and evidence-based decision making across programs.",
+                bio: "Bina Oraon serves as Data Advisor for Pally Karigori Foundation, bringing expertise in data collection, analysis and community research. She helps the foundation make evidence-based decisions to maximise impact in rural communities."
+              },
+              mrinnmoy: {
+                name: "Mrinnmoy",
+                role: "Public Health Research",
+                desc: "Leading public health research and community wellness initiatives.",
+                bio: "Mrinnmoy leads public health research at Pally Karigori Foundation, focusing on understanding the health challenges of rural communities. His work informs the Foundation's wellness programs and ensures they address real grassroots health needs."
+              },
+              debasmita: {
+                name: "Debasmita",
+                role: "Humanities Advisor",
+                desc: "Bringing a humanities perspective to curriculum design and community engagement.",
+                bio: "Debasmita serves as Humanities Advisor at Pally Karigori Foundation, ensuring that cultural context, history and human values are woven into every program. Her background in humanities enriches the Foundation's approach to rural education and development."
+              },
+              surja: {
+                name: "Surja Basu",
+                role: "Research Advisor",
+                desc: "Steering research initiatives and academic partnerships for the Foundation.",
+                bio: "Surja Basu is the Research Advisor at Pally Karigori Foundation, guiding research methodology and ensuring the Foundation's work is grounded in rigorous evidence. He bridges academic knowledge with ground-level community practice."
               }
             }
           },
