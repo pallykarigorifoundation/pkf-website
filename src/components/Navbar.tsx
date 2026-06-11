@@ -187,7 +187,7 @@ export default function Navbar() {
           </div>
 
           {/* ── MOBILE CONTROLS ── */}
-          <div className="flex lg:hidden items-center gap-3 relative z-[1020]">
+          <div className="flex lg:hidden items-center gap-3 relative z-[1020] ml-auto">
             <div className={`transition-opacity duration-300 ${menuOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
               <ThemeToggle isLight={isLight} />
             </div>
