@@ -44,8 +44,7 @@ export default function Centers() {
         .from(".centers-title", { y: 30, opacity: 0, duration: 0.6, clearProps: "all" }, "-=0.2")
         .from(".centers-subtitle", { y: 20, opacity: 0, duration: 0.5, clearProps: "all" }, "-=0.3")
         .from(".centers-card", { y: 40, opacity: 0, duration: 0.6, stagger: 0.2, clearProps: "all" }, "-=0.2")
-        .from(".centers-why-title", { y: 20, opacity: 0, duration: 0.5, clearProps: "all" }, "-=0.2")
-        .from(".centers-why-item", { y: 20, opacity: 0, duration: 0.4, stagger: 0.12, clearProps: "all" }, "-=0.2");
+        .from(".centers-why-title", { y: 20, opacity: 0, duration: 0.5, clearProps: "all" }, "-=0.2");
     }, sectionRef);
     return () => ctx.revert();
   }, []);

@@ -21,6 +21,17 @@ interface TeamMember {
   facebook?: string;
 }
 
+// Helper: inject Cloudinary transform params into an existing upload URL.
+// Works with both old-style  /q_auto/f_auto/  and combined  /q_auto,f_auto/  notation.
+function cloudinaryTransform(url: string, transforms: string): string {
+  if (!url) return url;
+  // Replace the transform segment between /upload/ and /v<version>
+  return url.replace(
+    /\/upload\/[^/]+\//,
+    `/upload/${transforms}/`
+  );
+}
+
 const members: TeamMember[] = [
   {
     id: "rabiul",
@@ -28,7 +39,7 @@ const members: TeamMember[] = [
     roleKey: "team.members.rabiul.role",
     descKey: "team.members.rabiul.desc",
     bioKey: "team.members.rabiul.bio",
-    image: "/rabi.webp",
+    image: "https://res.cloudinary.com/dfuti9ltx/image/upload/q_auto/f_auto/v1781161289/rabi_q6jtgn.webp",
     initials: "RI",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
@@ -42,7 +53,7 @@ const members: TeamMember[] = [
     roleKey: "team.members.subhendu.role",
     descKey: "team.members.subhendu.desc",
     bioKey: "team.members.subhendu.bio",
-    image: "/punpun.jpg",
+    image: "https://res.cloudinary.com/dfuti9ltx/image/upload/q_auto/f_auto/v1781161289/punpun_a1q8e3.webp",
     initials: "SK",
     locationKey: "team.locations.mirik_darjeeling",
     joinYearKey: "team.year_2026",
@@ -55,7 +66,7 @@ const members: TeamMember[] = [
     roleKey: "team.members.member3.role",
     descKey: "team.members.member3.desc",
     bioKey: "team.members.member3.bio",
-    image: "/deepom.jpg",
+    image: "https://res.cloudinary.com/dfuti9ltx/image/upload/q_auto/f_auto/v1781161289/deepom_kxh2wu.webp",
     initials: "AM",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
@@ -69,7 +80,7 @@ const members: TeamMember[] = [
     roleKey: "team.members.member4.role",
     descKey: "team.members.member4.desc",
     bioKey: "team.members.member4.bio",
-    image: "/rahul.webp",
+    image: "https://res.cloudinary.com/dfuti9ltx/image/upload/q_auto/f_auto/v1781161289/rahul_qfppg4.webp",
     initials: "PD",
     locationKey: "team.locations.darjeeling",
     joinYearKey: "team.year_2026",
@@ -127,6 +138,11 @@ const members: TeamMember[] = [
   },
 ];
 
+// Card thumbnail: portrait crop, capped at 600×800px, face-aware gravity
+const CARD_TRANSFORMS = "q_auto,f_auto,w_600,h_800,c_fill,g_face";
+// Modal image: landscape crop for the sidebar panel
+const MODAL_TRANSFORMS = "q_auto,f_auto,w_576,h_720,c_fill,g_face";
+
 function LinkedInIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -178,10 +194,16 @@ function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => v
   const overlayRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
+  // Build optimised modal image URL only when the modal opens
+  const modalImageSrc = member.image
+    ? cloudinaryTransform(member.image, MODAL_TRANSFORMS)
+    : "";
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     gsap.fromTo(overlayRef.current, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" });
-    gsap.fromTo(cardRef.current,
+    gsap.fromTo(
+      cardRef.current,
       { opacity: 0, scale: 0.93, y: 24 },
       { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: "power3.out" }
     );
@@ -220,25 +242,38 @@ function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => v
           className="absolute top-4 right-4 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-white/80 dark:bg-zinc-800/80 text-text-muted dark:text-white/60 hover:bg-lime hover:text-white transition-all backdrop-blur-sm"
           aria-label="Close"
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
         </button>
 
         <div className="flex flex-col md:flex-row overflow-y-auto scrollbar-hide">
           {/* Photo column */}
           <div className="md:w-72 md:flex-shrink-0 bg-olive/5 dark:bg-zinc-800/50 relative">
             <div className="aspect-[4/3] md:h-full md:aspect-auto overflow-hidden">
-              <img
-                src={member.image}
-                alt={t(member.nameKey)}
-                className="w-full h-full object-cover object-top"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = "none";
-                }}
-              />
-            </div>
-            {/* Initials fallback overlay */}
-            <div className="absolute inset-0 flex items-center justify-center bg-olive/10 dark:bg-zinc-700/30 md:hidden -z-10">
-              <span className="font-display text-7xl font-bold text-lime opacity-20">{member.initials}</span>
+              {modalImageSrc ? (
+                <img
+                  src={modalImageSrc}
+                  alt={t(member.nameKey)}
+                  // High priority — user explicitly opened this modal
+                  fetchPriority="high"
+                  decoding="async"
+                  width={576}
+                  height={720}
+                  className="w-full h-full object-cover object-top"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = "none";
+                  }}
+                />
+              ) : (
+                // Initials fallback when no image URL exists
+                <div className="w-full h-full bg-olive/10 dark:bg-zinc-700/30 flex items-center justify-center">
+                  <span className="font-display text-7xl font-bold text-lime opacity-20">
+                    {member.initials}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -334,7 +369,160 @@ function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => v
 export default function TeamSection() {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [activeModal, setActiveModal] = useState<TeamMember | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const isAnimatingRef = useRef(false);
+  const manualTweenRef = useRef<gsap.core.Tween | null>(null);
+
+  // Double it for seamless infinite loop
+  const doubledItems = [...members, ...members];
+
+  const getJumpDistance = (container: HTMLDivElement) => {
+    const children = container.children;
+    const setLength = members.length;
+    if (children.length >= setLength * 2) {
+      const firstChild = children[0] as HTMLElement;
+      const duplicateFirstChild = children[setLength] as HTMLElement;
+      if (firstChild && duplicateFirstChild) {
+        return duplicateFirstChild.offsetLeft - firstChild.offsetLeft;
+      }
+    }
+    return container.scrollWidth / 2;
+  };
+
+  // Auto scroll effect: right to left (cards move left, scrollLeft increases)
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let animationFrameId: number;
+
+    const updateScroll = () => {
+      if (!isHovered && !isAnimatingRef.current) {
+        container.scrollLeft += 0.8;
+
+        const jumpDist = getJumpDistance(container);
+        if (jumpDist > 0) {
+          if (container.scrollLeft >= jumpDist + 50) {
+            container.scrollLeft -= jumpDist;
+          }
+        }
+      }
+      animationFrameId = requestAnimationFrame(updateScroll);
+    };
+
+    animationFrameId = requestAnimationFrame(updateScroll);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isHovered]);
+
+  // Set initial scroll to center and handle wrapping on manual scroll (touch/swipe)
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const initScroll = () => {
+      const jumpDist = getJumpDistance(container);
+      if (jumpDist > 0) {
+        container.scrollLeft = jumpDist;
+      }
+    };
+
+    // Delay slightly to allow layout calculations
+    requestAnimationFrame(initScroll);
+
+    const handleScroll = () => {
+      if (isAnimatingRef.current) return;
+      const jumpDist = getJumpDistance(container);
+      if (jumpDist <= 0) return;
+
+      if (container.scrollLeft <= 10) {
+        container.scrollLeft += jumpDist;
+      } else if (container.scrollLeft >= jumpDist + 50) {
+        container.scrollLeft -= jumpDist;
+      }
+    };
+
+    const handleResize = () => {
+      initScroll();
+    };
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const handlePrev = () => {
+    const container = containerRef.current;
+    if (!container) return;
+    const cardWidth = container.querySelector(".team-card")?.clientWidth || 310;
+    const gap = 24;
+    const scrollAmount = cardWidth + gap;
+    const targetScrollLeft = container.scrollLeft - scrollAmount;
+
+    isAnimatingRef.current = true;
+
+    if (manualTweenRef.current) {
+      manualTweenRef.current.kill();
+    }
+
+    const scrollObj = { value: container.scrollLeft };
+    manualTweenRef.current = gsap.to(scrollObj, {
+      value: targetScrollLeft,
+      duration: 0.6,
+      ease: "power2.out",
+      onUpdate: () => {
+        container.scrollLeft = scrollObj.value;
+        const jumpDist = getJumpDistance(container);
+        if (container.scrollLeft <= 10) {
+          container.scrollLeft += jumpDist;
+          scrollObj.value += jumpDist;
+        }
+      },
+      onComplete: () => {
+        isAnimatingRef.current = false;
+        manualTweenRef.current = null;
+      }
+    });
+  };
+
+  const handleNext = () => {
+    const container = containerRef.current;
+    if (!container) return;
+    const cardWidth = container.querySelector(".team-card")?.clientWidth || 310;
+    const gap = 24;
+    const scrollAmount = cardWidth + gap;
+    const targetScrollLeft = container.scrollLeft + scrollAmount;
+
+    isAnimatingRef.current = true;
+
+    if (manualTweenRef.current) {
+      manualTweenRef.current.kill();
+    }
+
+    const scrollObj = { value: container.scrollLeft };
+    manualTweenRef.current = gsap.to(scrollObj, {
+      value: targetScrollLeft,
+      duration: 0.6,
+      ease: "power2.out",
+      onUpdate: () => {
+        container.scrollLeft = scrollObj.value;
+        const jumpDist = getJumpDistance(container);
+        if (container.scrollLeft >= jumpDist + 50) {
+          container.scrollLeft -= jumpDist;
+          scrollObj.value -= jumpDist;
+        }
+      },
+      onComplete: () => {
+        isAnimatingRef.current = false;
+        manualTweenRef.current = null;
+      }
+    });
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -345,118 +533,150 @@ export default function TeamSection() {
       tl.from(".team-label", { y: 20, opacity: 0, duration: 0.5, clearProps: "all" })
         .from(".team-heading", { y: 30, opacity: 0, duration: 0.6, clearProps: "all" }, "-=0.3")
         .from(".team-sub", { y: 20, opacity: 0, duration: 0.5, clearProps: "all" }, "-=0.3")
-        .from(".team-card", { y: 40, opacity: 0, duration: 0.55, stagger: 0.1, clearProps: "all" }, "-=0.3");
+        .from(".team-card", { y: 40, opacity: 0, duration: 0.55, stagger: 0.05, clearProps: "all" }, "-=0.3");
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
   return (
     <>
-      <section ref={sectionRef} id="team" className="bg-cream dark:bg-black py-16 lg:py-24">
-        <div className="w-full px-8 lg:px-16">
-
+      <style>{`
+        .scrollbar-none::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-none {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+      <section ref={sectionRef} id="team" className="bg-cream dark:bg-black py-16 lg:py-24 overflow-hidden">
+        <div className="w-full">
           {/* Header */}
-          <div className="team-label text-[0.72rem] font-bold tracking-widest text-lime uppercase mb-8">
-            {t("team.label")}
+          <div className="px-8 lg:px-16">
+            <div className="team-label text-[0.72rem] font-bold tracking-widest text-lime uppercase mb-8">
+              {t("team.label")}
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-end mb-14">
+              <h2 className="team-heading font-display text-3xl sm:text-4xl lg:text-[3rem] font-semibold text-olive dark:text-lime-light leading-[1.35]">
+                {t("team.title")}
+                <span className="block text-lime mt-6">{t("team.title_em")}</span>
+              </h2>
+              <p className="team-sub text-base lg:text-lg font-light text-text-muted dark:text-white/70 leading-relaxed">
+                {t("team.sub")}
+              </p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-end mb-14">
-            <h2 className="team-heading font-display text-3xl sm:text-4xl lg:text-[3rem] font-semibold text-olive dark:text-lime-light leading-[1.35]">
-              {t("team.title")}
-              <span className="block text-lime mt-6">{t("team.title_em")}</span>
-            </h2>
-            <p className="team-sub text-base lg:text-lg font-light text-text-muted dark:text-white/70 leading-relaxed">
-              {t("team.sub")}
-            </p>
-          </div>
+          {/* Horizontal Slideshow */}
+          <div className="relative w-full overflow-hidden">
+            {/* Left fade gradient */}
+            <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r from-cream to-transparent dark:from-black z-10 pointer-events-none" />
+            
+            <div
+              ref={containerRef}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className="flex gap-6 overflow-x-auto scrollbar-none py-6 px-8 md:px-16 select-none items-stretch"
+            >
+              {doubledItems.map((member, index) => {
+                const cardImageSrc = member.image
+                  ? cloudinaryTransform(member.image, CARD_TRANSFORMS)
+                  : "";
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {members.map((member) => (
-              <button
-                key={member.id}
-                onClick={() => setActiveModal(member)}
-                className="team-card group text-left rounded-[20px] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg-custom focus:outline-none focus:ring-4 focus:ring-lime/20"
-              >
-                {/* Full-bleed card — image covers entire card */}
-                <div
-                  className="relative h-[420px] sm:h-[500px] flex flex-col justify-between p-6 lg:p-8"
-                  style={{
-                    backgroundImage: member.image
-                      ? `linear-gradient(to bottom, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.70) 100%), url(${member.image})`
-                      : `linear-gradient(to bottom, rgba(30,40,20,0.85) 0%, rgba(10,20,5,0.95) 100%)`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center top",
-                  }}
-                >
-                  {/* Initials for members without photo */}
-                  {!member.image && (
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <span className="font-display text-8xl font-bold text-lime/20">{member.initials}</span>
-                    </div>
-                  )}
-
-                  {/* Bottom content */}
-                  <div className="flex flex-col gap-2 mt-auto">
-                    <p className="text-[9px] font-bold tracking-[0.18em] uppercase text-lime-light">
-                      {t(member.roleKey)}
-                    </p>
-                    <div className="font-display text-xl font-normal text-white drop-shadow-lg leading-none truncate">
-                      {t(member.nameKey)}
-                    </div>
-                    <div className="overflow-hidden max-h-0 group-hover:max-h-40 transition-all duration-300 ease-in-out flex flex-col gap-1.5 pt-0 group-hover:pt-1">
-                      <div className="flex gap-2 items-start">
-                        <span className="text-base font-bold text-lime-light leading-none flex-shrink-0">+</span>
-                        <p className="text-xs text-white/90 leading-snug font-normal line-clamp-2">
-                          {t(member.descKey)}
-                        </p>
+                return (
+                  <button
+                    key={`${member.id}-${index}`}
+                    onClick={() => setActiveModal(member)}
+                    className="team-card group text-left rounded-[20px] overflow-hidden transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-lime/20 bg-zinc-900 hover:bg-lime-light w-[280px] sm:w-[310px] md:w-[330px] flex-shrink-0"
+                  >
+                    <div className="p-4 flex flex-col gap-4 h-full">
+                      {/* Name */}
+                      <div className="flex flex-col gap-0.5">
+                        <h3 className="font-display text-xl font-bold text-white group-hover:text-zinc-900 leading-tight transition-colors duration-300 truncate">
+                          {t(member.nameKey)}
+                        </h3>
                       </div>
-                      <div className="flex gap-2 items-start">
-                        <span className="text-base font-bold text-lime-light leading-none flex-shrink-0">+</span>
-                        <p className="text-xs text-white/90 leading-snug font-normal">
-                          {member.skillKeys.slice(0, 2).map(sk => t(sk)).join(" · ")}
-                        </p>
-                      </div>
-                      <span className="text-white/80 text-[10px] font-bold uppercase tracking-widest mt-1">
-                        {t("team.view_profile")} →
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </button>
-            ))}
 
-            {/* Empty placeholder cards */}
-            {[
-              { role: "Community Head" },
-              { role: "Program Manager" },
-              { role: "Volunteer" },
-            ].map((p) => (
-              <div
-                key={p.role}
-                className="team-card relative rounded-[20px] overflow-hidden border border-dashed border-white/20 dark:border-white/10 bg-olive/5 dark:bg-zinc-900/40 h-[420px] sm:h-[500px] flex flex-col items-center justify-center gap-4 select-none"
-              >
-                {/* Pulsing avatar placeholder */}
-                <div className="relative flex items-center justify-center mb-1">
-                  <span className="absolute w-20 h-20 rounded-full bg-lime/10 animate-ping" style={{ animationDuration: "2.5s" }} />
-                  <span className="relative z-10 w-16 h-16 rounded-full border-2 border-dashed border-lime/30 flex items-center justify-center">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-lime/40">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
-                    </svg>
-                  </span>
-                </div>
-                <div className="text-center px-6">
-                  <p className="text-[9px] font-bold tracking-[0.18em] uppercase text-lime/50 mb-2">Position Open</p>
-                  <p className="font-display text-lg font-semibold text-white/30">{p.role}</p>
-                </div>
-                <div className="inline-flex items-center gap-2 bg-lime/10 border border-lime/20 text-lime/60 text-[0.65rem] font-semibold tracking-widest uppercase py-1 px-3 rounded-full">
-                  <span className="w-1.5 h-1.5 rounded-full bg-lime/50 animate-pulse" />
-                  Coming Soon
-                </div>
-              </div>
-            ))}
+                      {/* Photo */}
+                      <div className="relative rounded-[14px] overflow-hidden w-full aspect-[3/4]">
+                        <div className="w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-90">
+                          {cardImageSrc ? (
+                            <img
+                              src={cardImageSrc}
+                              alt={t(member.nameKey)}
+                              loading="lazy"
+                              decoding="async"
+                              width={600}
+                              height={800}
+                              className="w-full h-full object-cover object-top opacity-60 group-hover:opacity-100 transition-opacity duration-500"
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-zinc-800 group-hover:bg-lime/20 transition-colors duration-300 flex items-center justify-center">
+                              <span className="font-display text-6xl font-bold text-zinc-600 group-hover:text-zinc-900/30 transition-colors duration-300">
+                                {member.initials}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Info rows */}
+                      <div className="flex flex-col gap-0 border-t border-white/10 group-hover:border-zinc-900/20 transition-all duration-300 overflow-hidden max-h-0 group-hover:max-h-40 group-hover:pt-3">
+                        <div className="flex items-center justify-between py-2 border-b border-white/8 group-hover:border-zinc-900/15">
+                          <span className="text-[0.6rem] font-bold tracking-[0.15em] uppercase text-white/40 group-hover:text-zinc-900/50 transition-colors duration-300">
+                            Position
+                          </span>
+                          <span className="text-xs font-semibold text-white/80 group-hover:text-zinc-900 transition-colors duration-300 text-right overflow-hidden whitespace-nowrap w-0 group-hover:w-auto group-hover:animate-typing">
+                            {t(member.roleKey)}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between py-2">
+                          <span className="text-[0.6rem] font-bold tracking-[0.15em] uppercase text-white/40 group-hover:text-zinc-900/50 transition-colors duration-300">
+                            Info
+                          </span>
+                          <span className="text-xs font-semibold text-white/80 group-hover:text-zinc-900 transition-colors duration-300 text-right overflow-hidden whitespace-nowrap w-0 group-hover:w-auto group-hover:animate-typing-delay max-w-[60%] line-clamp-1">
+                            {t(member.descKey).split(".")[0]}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Right fade gradient */}
+            <div className="absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-l from-cream to-transparent dark:from-black z-10 pointer-events-none" />
           </div>
 
+          {/* Navigation CTA Buttons */}
+          <div className="flex justify-center gap-4 mt-8">
+            <button
+              onClick={handlePrev}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className="w-12 h-12 rounded-full border border-lime text-lime dark:text-lime-light hover:bg-lime hover:text-white transition-all flex items-center justify-center bg-transparent focus:outline-none focus:ring-2 focus:ring-lime"
+              aria-label="Previous Team Member"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+            </button>
+            <button
+              onClick={handleNext}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className="w-12 h-12 rounded-full border border-lime text-lime dark:text-lime-light hover:bg-lime hover:text-white transition-all flex items-center justify-center bg-transparent focus:outline-none focus:ring-2 focus:ring-lime"
+              aria-label="Next Team Member"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </button>
+          </div>
         </div>
       </section>
 
