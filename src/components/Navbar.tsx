@@ -79,7 +79,7 @@ export default function Navbar() {
             : "bg-transparent py-5"
           }`}
       >
-        <div className="w-full px-8 lg:px-16 grid grid-cols-[auto_1fr_auto] items-center gap-6">
+        <div className="w-full px-4 sm:px-8 lg:px-16 flex items-center justify-between lg:grid lg:grid-cols-[auto_1fr_auto] gap-6">
 
           {/* ── BRAND ── */}
           <Link
