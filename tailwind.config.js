@@ -31,10 +31,10 @@ export default {
         body: 'var(--font-body)',
       },
       boxShadow: {
-        'sm-custom': '0 2px 8px rgba(107, 122, 42, 0.1)',
-        'md-custom': '0 8px 24px rgba(107, 122, 42, 0.12)',
-        'lg-custom': '0 16px 48px rgba(107, 122, 42, 0.18)',
-        'lime': '0 4px 20px rgba(138, 170, 30, 0.3)',
+        'sm-custom': '0 2px 8px rgba(0, 52, 98, 0.1)',
+        'md-custom': '0 8px 24px rgba(0, 52, 98, 0.12)',
+        'lg-custom': '0 16px 48px rgba(0, 52, 98, 0.18)',
+        'lime': '0 4px 20px rgba(0, 70, 169, 0.3)',
       },
       animation: {
         'fade-up': 'fadeUp 0.35s ease both',
