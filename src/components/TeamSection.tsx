@@ -39,7 +39,7 @@ const members: TeamMember[] = [
     roleKey: "team.members.rabiul.role",
     descKey: "team.members.rabiul.desc",
     bioKey: "team.members.rabiul.bio",
-    image: "https://res.cloudinary.com/dfuti9ltx/image/upload/q_auto/f_auto/v1781161289/rabi_q6jtgn.webp",
+    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781775515/rabi_qie3sw.webp",
     initials: "RI",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
@@ -53,7 +53,7 @@ const members: TeamMember[] = [
     roleKey: "team.members.subhendu.role",
     descKey: "team.members.subhendu.desc",
     bioKey: "team.members.subhendu.bio",
-    image: "https://res.cloudinary.com/dfuti9ltx/image/upload/q_auto/f_auto/v1781161289/punpun_a1q8e3.webp",
+    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781775510/punpun_pnsook.webp",
     initials: "SK",
     locationKey: "team.locations.mirik_darjeeling",
     joinYearKey: "team.year_2026",
@@ -66,7 +66,7 @@ const members: TeamMember[] = [
     roleKey: "team.members.dipam.role",
     descKey: "team.members.dipam.desc",
     bioKey: "team.members.dipam.bio",
-    image: "https://res.cloudinary.com/dfuti9ltx/image/upload/q_auto/f_auto/v1781161289/deepom_kxh2wu.webp",
+    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781775511/dipam_t3puoj.webp",
     initials: "AM",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
@@ -80,7 +80,7 @@ const members: TeamMember[] = [
     roleKey: "team.members.rahul.role",
     descKey: "team.members.rahul.desc",
     bioKey: "team.members.rahul.bio",
-    image: "https://res.cloudinary.com/dfuti9ltx/image/upload/q_auto/f_auto/v1781161289/rahul_qfppg4.webp",
+    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781775512/rahul_jjmvmd.webp",
     initials: "PD",
     locationKey: "team.locations.darjeeling",
     joinYearKey: "team.year_2026",
@@ -106,7 +106,7 @@ const members: TeamMember[] = [
     roleKey: "team.members.mrinmoy.role",
     descKey: "team.members.mrinmoy.desc",
     bioKey: "team.members.mrinmoy.bio",
-    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781690880/mrinmoy_jau1tb.webp",
+    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781775511/mrinmoy_qctwlr.webp",
     initials: "YOU",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
@@ -118,7 +118,7 @@ const members: TeamMember[] = [
     roleKey: "team.members.jagyoseni.role",
     descKey: "team.members.jagyoseni.desc",
     bioKey: "team.members.jagyoseni.bio",
-    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781690878/Jagyoseni_1_n2e7ax.webp",
+    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781775515/jagyoseni_w861mj.webp",
     initials: "YOU",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
@@ -130,7 +130,7 @@ const members: TeamMember[] = [
     roleKey: "team.members.monsa.role",
     descKey: "team.members.monsa.desc",
     bioKey: "team.members.monsa.bio",
-    image: "https://res.cloudinary.com/dktxqkkky/image/upload/f_auto,q_auto/monsa_xrseuf",
+    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781775510/Frame_2_gz3cfd.webp",
     initials: "YOU",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
@@ -142,7 +142,7 @@ const members: TeamMember[] = [
     roleKey: "team.members.debasmita.role",
     descKey: "team.members.debasmita.desc",
     bioKey: "team.members.debasmita.bio",
-    image: "",
+    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781775509/debasmita_pquwam.webp",
     initials: "DG",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
@@ -419,22 +419,25 @@ export default function TeamSection() {
           </div>
 
           {/* Grid Layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 px-8 lg:px-16 py-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 px-8 lg:px-16 py-6 max-w-6xl mx-auto">
             {members.map((member) => {
               const cardImageSrc = member.image
                 ? cloudinaryTransform(member.image, CARD_TRANSFORMS)
                 : "";
 
               return (
-                <button
+                <div
                   key={member.id}
                   onClick={() => setActiveModal(member)}
-                  className="team-card group text-left rounded-[20px] overflow-hidden transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-lime/20 bg-zinc-900 hover:bg-lime-light w-full max-w-[280px] sm:max-w-[300px] mx-auto"
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { setActiveModal(member); } }}
+                  role="button"
+                  tabIndex={0}
+                  className="team-card group text-left rounded-[20px] overflow-hidden transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-lime/20 bg-zinc-900 hover:bg-lime hover:scale-105 transform w-full max-w-[320px] sm:max-w-[340px] mx-auto cursor-pointer"
                 >
                   <div className="p-4 flex flex-col gap-4 h-full">
                     {/* Name */}
                     <div className="flex flex-col gap-0.5">
-                      <h3 className="font-display text-xl font-bold text-white group-hover:text-zinc-900 leading-tight transition-colors duration-300 truncate">
+                      <h3 className="font-display text-xl font-bold text-white group-hover:text-white leading-tight transition-colors duration-300 truncate">
                         {t(member.nameKey)}
                       </h3>
                     </div>
@@ -454,7 +457,7 @@ export default function TeamSection() {
                           />
                         ) : (
                           <div className="w-full h-full bg-zinc-800 group-hover:bg-lime/20 transition-colors duration-300 flex items-center justify-center">
-                            <span className="font-display text-6xl font-bold text-zinc-600 group-hover:text-zinc-900/30 transition-colors duration-300">
+                            <span className="font-display text-6xl font-bold text-zinc-600 group-hover:text-white/30 transition-colors duration-300">
                               {member.initials}
                             </span>
                           </div>
@@ -463,26 +466,54 @@ export default function TeamSection() {
                     </div>
 
                     {/* Info rows */}
-                    <div className="flex flex-col gap-0 border-t border-white/10 group-hover:border-zinc-900/20 transition-all duration-300 overflow-hidden max-h-0 group-hover:max-h-40 group-hover:pt-3">
-                      <div className="flex items-center justify-between py-2 border-b border-white/8 group-hover:border-zinc-900/15">
-                        <span className="text-[0.6rem] font-bold tracking-[0.15em] uppercase text-white/40 group-hover:text-zinc-900/50 transition-colors duration-300">
+                    <div className="flex flex-col gap-0 border-t border-white/10 group-hover:border-white/20 transition-all duration-300 overflow-hidden max-h-0 group-hover:max-h-52 group-hover:pt-3">
+                      <div className="flex items-center justify-between py-2 border-b border-white/8 group-hover:border-white/15">
+                        <span className="text-[0.6rem] font-bold tracking-[0.15em] uppercase text-white/40 group-hover:text-white/60 transition-colors duration-300">
                           Position
                         </span>
-                        <span className="text-xs font-semibold text-white/80 group-hover:text-zinc-900 transition-colors duration-300 text-right overflow-hidden whitespace-nowrap w-0 group-hover:w-auto group-hover:animate-typing">
+                        <span className="text-xs font-semibold text-white/80 group-hover:text-white transition-colors duration-300 text-right overflow-hidden whitespace-nowrap w-0 group-hover:w-auto group-hover:animate-typing">
                           {t(member.roleKey)}
                         </span>
                       </div>
-                      <div className="flex items-center justify-between py-2">
-                        <span className="text-[0.6rem] font-bold tracking-[0.15em] uppercase text-white/40 group-hover:text-zinc-900/50 transition-colors duration-300">
-                          Info
+                      <div className="flex items-center justify-between py-2 border-b border-white/8 group-hover:border-white/15">
+                        <span className="text-[0.6rem] font-bold tracking-[0.15em] uppercase text-white/40 group-hover:text-white/60 transition-colors duration-300">
+                          Qualifications
                         </span>
-                        <span className="text-xs font-semibold text-white/80 group-hover:text-zinc-900 transition-colors duration-300 text-right overflow-hidden whitespace-nowrap w-0 group-hover:w-auto group-hover:animate-typing-delay max-w-[60%] line-clamp-1">
-                          {t(member.descKey).split(".")[0]}
+                        <span className="text-xs font-semibold text-white/80 group-hover:text-white transition-colors duration-300 text-right overflow-hidden whitespace-nowrap w-0 group-hover:w-auto group-hover:animate-typing-delay max-w-[65%] truncate">
+                          {member.skillKeys.map(key => t(key)).join(", ")}
                         </span>
                       </div>
+                      {(member.linkedin || member.instagram) && (
+                        <div className="flex items-center justify-end gap-3 pt-2">
+                          {member.linkedin && (
+                            <a
+                              href={member.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="text-white/60 hover:text-white transition-colors p-1"
+                              aria-label="LinkedIn"
+                            >
+                              <LinkedInIcon />
+                            </a>
+                          )}
+                          {member.instagram && (
+                            <a
+                              href={member.instagram}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="text-white/60 hover:text-white transition-colors p-1"
+                              aria-label="Instagram"
+                            >
+                              <InstagramIcon />
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>
