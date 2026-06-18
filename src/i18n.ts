@@ -1,4 +1,4 @@
-import i18n from 'i18next';
+﻿import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
@@ -356,46 +356,40 @@ i18n
               behala_kolkata: "Behala, Kolkata"
             },
             skills_list: {
-              comm_outreach: "Community Outreach",
-              prog_design: "Program Design",
-              rural_dev: "Rural Development",
-              curr_design: "Curriculum Design",
-              skill_training: "Skill Training",
-              education: "Education",
-              strategic_oversight: "Strategic Oversight",
-              org_growth: "Organizational Growth",
-              capacity_building: "Capacity Building",
-              frontend_develop: "Front-End Development",
-              tech_training: "Tech Training",
-              ai_tools: "AI Tools",
-              operations: "Operations Management",
-              tech_support: "Technical Support",
-              full_stack_dev: "Full Stack Development",
-              design: "UI/UX Design",
-              media: "Media",
-              clickup: "Clickup God",
-              data_advisory: "Data Advisory",
-              analysis: "Data Analysis",
-              public_health: "Public Health",
-              research: "Research",
-              humanities: "Humanities"
+              comm_outreach: "M.A VisComm",
+              prog_design: "B.A (Phil)",
+              rural_dev: "M.Phil",
+              curr_design: "BCA",
+              skill_training: "B.Sc (Maths)",
+              education: "M.Sc (Data)",
+              strategic_oversight: "B.Tech",
+              org_growth: "M.A (Anthropology)",
+              capacity_building: "D.Phil",
+              frontend_develop: "MCA",
+              tech_training: "MBA",
+              ai_tools: "M.Tech",
+              data_advisory: "B.Sc",
+              analysis: "M.A",
+              public_health: "MBBS",
+              research: "M.Phil",
+              humanities: "B.A"
             },
             members: {
               rabiul: {
                 name: "Rabiul Islam",
-                role: "Founder & Community Lead",
+                role: "Founder",
                 desc: "Driving grassroots outreach and community partnerships across Plassey.",
                 bio: "Rabiul Islam is the co-founder of the Pally Karigori Foundation and leads all community engagement efforts in the Plassey region. With deep roots in the local community, he bridges the gap between institutional programs and ground-level implementation, ensuring every initiative is shaped by real community needs."
               },
               subhendu: {
                 name: "Dr. Subhendu Kundu",
-                role: "Co-Founder & Lead Instructor",
+                role: "Co-Founder",
                 desc: "Designing curriculum and leading skill training programs across both campuses.",
                 bio: "Dr. Subhendu Kundu is the academic backbone of PKF. He has spent over a decade in rural education and skill development, designing courses that blend modern expertise with traditional knowledge systems. He oversees all educational programs from both the Mirik and Plassey campuses."
               },
               dipam: {
                 name: "Dipam Chakraborty",
-                role: "Advisor",
+                role: " Tech Advisor",
                 desc: "Leading organic farming and agri-livelihood programs in the Plassey region.",
                 bio:  "Dipam Chakraborty serves as a Strategic Advisor for the Pally Karigori Foundation (PKF). Since joining in 2026, he has provided high-level guidance to ensure the organization meets its mission of empowering rural youth. Dipam focuses on scaling the forum's impact, streamlining operational frameworks, and mentoring leadership teams to create sustainable professional pathways for local communities."
               },
@@ -412,27 +406,27 @@ i18n
                 bio: "Bina Oraon serves as Data Advisor for Pally Karigori Foundation, bringing expertise in data collection, analysis and community research. She helps the foundation make evidence-based decisions to maximise impact in rural communities."
               },
               mrinmoy: {
-                name: "Mrinnmoy",
+                name: "Mrinnmoy Ghosh",
                 role: "Public Health Research",
                 desc: "Leading public health research and community wellness initiatives.",
                 bio: "Mrinnmoy leads public health research at Pally Karigori Foundation, focusing on understanding the health challenges of rural communities. His work informs the Foundation's wellness programs and ensures they address real grassroots health needs."
               },
               jagyoseni: {
                 name: "Jagyoseni Mondal",
-                role: "Humanities Advisor",
-                desc: "Bringing a humanities perspective to curriculum design and community engagement.",
-                bio: "Jagyoseni Mondal serves as Humanities Advisor at Pally Karigori Foundation, ensuring that cultural context, history and human values are woven into every program. Her background in humanities enriches the Foundation's approach to rural education and development."
+                role: "Traditional Medicine Advisor",
+                desc: "Bringing a traditional medicine perspective to curriculum design and community engagement.",
+                bio: "Jagyoseni Mondal serves as Traditional Medicine Advisor at Pally Karigori Foundation, ensuring that cultural context, history and human values are woven into every program. Her background in humanities enriches the Foundation's approach to rural education and development."
               },
               monsa: {
                 name: "Monsa Hilora",
-                role: "Research Advisor",
+                role: "Primary EyeCare Advisor",
                 desc: "Steering research initiatives and academic partnerships for the Foundation.",
                 bio: "Monsa Hilora serves as Research Advisor at Pally Karigori Foundation, guiding research methodology and ensuring the Foundation's work is grounded in rigorous evidence. He bridges academic knowledge with ground-level community practice."
               },
               debasmita: {
                 name: "Debasmita Ghosh",
-                role: "Advisor",
-                desc: "Advisor in local knowledge archive.",
+                role: "Local Knowledge Advisor",
+                desc: "Local Knowledge Advisor.",
                 bio: "Debasmita Ghosh serves as an Advisor in the Local Knowledge Archive at Pally Karigori Foundation, documenting and preserving traditional wisdom."
               }
             }
@@ -935,24 +929,23 @@ i18n
               behala_kolkata: "बेहाला, कोलकाता"
             },
             skills_list: {
-              comm_outreach: "सामुदायिक आउटरीच",
-              prog_design: "कार्यक्रम डिजाइन",
-              rural_dev: "ग्रामीण विकास",
-              curr_design: "पाठ्यक्रम डिजाइन",
-              skill_training: "कौशल प्रशिक्षण",
-              education: "शिक्षा",
-              agri: "कृषि",
-              org_farming: "जैविक खेती",
-              livelihood: "आजीविका",
-              dig_literacy: "डिजिटल साक्षरता",
-              tech_training: "तकनीकी प्रशिक्षण",
-              ai_tools: "एआई उपकरण",
-              wellness: "कल्याण",
-              ayurveda: "आयुर्वेद",
-              health_edu: "स्वास्थ्य शिक्षा",
-              design: "डिजाइन",
-              media: "मीडिया",
-              vis_comm: "विजुअल कम्युनिकेशन"
+              comm_outreach: "MSW",
+              prog_design: "M.A.",
+              rural_dev: "M.Phil",
+              curr_design: "Ph.D",
+              skill_training: "M.Ed",
+              education: "B.Ed",
+              strategic_oversight: "B.Tech",
+              org_growth: "MBA",
+              capacity_building: "M.Sc",
+              frontend_develop: "B.Tech",
+              tech_training: "MCA",
+              ai_tools: "M.Tech",
+              data_advisory: "M.Sc",
+              analysis: "Ph.D",
+              public_health: "MBBS",
+              research: "M.Phil",
+              humanities: "M.A."
             },
             members: {
               rabiul: {
@@ -1491,24 +1484,23 @@ i18n
               behala_kolkata: "বেহালা, কলকাতা"
             },
             skills_list: {
-              comm_outreach: "সামুদায়িক আউটরিচ",
-              prog_design: "প্রোগ্রাম ডিজাইন",
-              rural_dev: "গ্রামীণ উন্নয়ন",
-              curr_design: "কারিকুলাম ডিজাইন",
-              skill_training: "দক্ষতা প্রশিক্ষণ",
-              education: "শিক্ষা",
-              agri: "কৃষি",
-              org_farming: "জৈব চাষ",
-              livelihood: "জীবিকা",
-              dig_literacy: "ডিজিটাল সাক্ষরতা",
-              tech_training: "প্রযুক্তি প্রশিক্ষণ",
-              ai_tools: "এআই সরঞ্জাম",
-              wellness: "সুস্থতা",
-              ayurveda: "আয়ুর্বেদ",
-              health_edu: "স্বাস্থ্য শিক্ষা",
-              design: "ডিজাইন",
-              media: "মিডিয়া",
-              vis_comm: "ভিজ্যুয়াল কমিউনিকেশন"
+              comm_outreach: "MSW",
+              prog_design: "M.A.",
+              rural_dev: "M.Phil",
+              curr_design: "Ph.D",
+              skill_training: "M.Ed",
+              education: "B.Ed",
+              strategic_oversight: "B.Tech",
+              org_growth: "MBA",
+              capacity_building: "M.Sc",
+              frontend_develop: "B.Tech",
+              tech_training: "MCA",
+              ai_tools: "M.Tech",
+              data_advisory: "M.Sc",
+              analysis: "Ph.D",
+              public_health: "MBBS",
+              research: "M.Phil",
+              humanities: "M.A."
             },
             members: {
               rabiul: {

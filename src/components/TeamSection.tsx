@@ -43,7 +43,7 @@ const members: TeamMember[] = [
     initials: "RI",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.comm_outreach", "team.skills_list.prog_design", "team.skills_list.rural_dev"],
+    skillKeys: ["team.skills_list.comm_outreach", "team.skills_list.prog_design"],
     linkedin: "https://www.linkedin.com/in/ruralrabi/",
     instagram: "https://www.instagram.com/robichobi/",
   },
@@ -57,7 +57,7 @@ const members: TeamMember[] = [
     initials: "SK",
     locationKey: "team.locations.mirik_darjeeling",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.curr_design", "team.skills_list.skill_training", "team.skills_list.education"],
+    skillKeys: ["", ""],
     instagram: "https://www.instagram.com/subhendukundu/",
   },
   {
@@ -70,7 +70,7 @@ const members: TeamMember[] = [
     initials: "AM",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.strategic_oversight", "team.skills_list.org_growth", "team.skills_list.capacity_building"],
+    skillKeys: ["team.skills_list.strategic_oversight", "team.skills_list.ai_tools"],
     linkedin: "https://www.linkedin.com/in/dipamc/",
     instagram: "https://www.instagram.com/_dipam.chakraborty_/",
   },
@@ -84,7 +84,7 @@ const members: TeamMember[] = [
     initials: "PD",
     locationKey: "team.locations.darjeeling",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.frontend_develop", "team.skills_list.tech_training", "team.skills_list.ai_tools"],
+    skillKeys: ["team.skills_list.curr_design"],
     linkedin: "https://www.linkedin.com/in/rahul-chettri-a354182b9/",
     instagram: "https://www.instagram.com/_.rahul.c_/",
   },
@@ -94,11 +94,11 @@ const members: TeamMember[] = [
     roleKey: "team.members.bina.role",
     descKey: "team.members.bina.desc",
     bioKey: "team.members.bina.bio",
-    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781690876/bina_c6dtx1.webp",
+    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781775511/bina_g83ykf.webp",
     initials: "Bina",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.data_advisory", "team.skills_list.analysis", "team.skills_list.rural_dev"],
+    skillKeys: ["team.skills_list.skill_training", "team.skills_list.education"],
   },
   {
     id: "mrinmoy",
@@ -110,7 +110,7 @@ const members: TeamMember[] = [
     initials: "YOU",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.public_health", "team.skills_list.research", "team.skills_list.comm_outreach"],
+    skillKeys: ["team.skills_list.org_growth"],
   },
   {
     id: "jagyoseni",
@@ -122,7 +122,7 @@ const members: TeamMember[] = [
     initials: "YOU",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.humanities", "team.skills_list.research", "team.skills_list.education"],
+    skillKeys: ["team.skills_list.rural_dev", "team.skills_list.capacity_building"],
   },
   {
     id: "monsa",
@@ -134,7 +134,7 @@ const members: TeamMember[] = [
     initials: "YOU",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.research", "team.skills_list.strategic_oversight", "team.skills_list.rural_dev"],
+    skillKeys: [""],
   },
   {
     id: "debasmita",
@@ -146,7 +146,7 @@ const members: TeamMember[] = [
     initials: "DG",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.research", "team.skills_list.rural_dev"],
+    skillKeys:  [""],
   },
 ];
 
@@ -480,7 +480,7 @@ export default function TeamSection() {
                           Qualifications
                         </span>
                         <span className="text-xs font-semibold text-white/80 group-hover:text-white transition-colors duration-300 text-right overflow-hidden whitespace-nowrap w-0 group-hover:w-auto group-hover:animate-typing-delay max-w-[65%] truncate">
-                          {member.skillKeys.map(key => t(key)).join(", ")}
+                          {Array.from(new Set(member.skillKeys.map(key => t(key)))).join(", ")}
                         </span>
                       </div>
                       {(member.linkedin || member.instagram) && (
