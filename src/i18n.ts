@@ -1,4 +1,4 @@
-﻿import i18n from 'i18next';
+import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
@@ -393,53 +393,47 @@ i18n
                 desc: "Designing curriculum and leading skill training programs across both campuses.",
                 bio: "Dr. Subhendu Kundu is the academic backbone of PKF. He has spent over a decade in rural education and skill development, designing courses that blend modern expertise with traditional knowledge systems. He oversees all educational programs from both the Mirik and Plassey campuses."
               },
-              member3: {
+              dipam: {
                 name: "Dipam Chakraborty",
                 role: "Advisor",
                 desc: "Leading organic farming and agri-livelihood programs in the Plassey region.",
                 bio:  "Dipam Chakraborty serves as a Strategic Advisor for the Pally Karigori Foundation (PKF). Since joining in 2026, he has provided high-level guidance to ensure the organization meets its mission of empowering rural youth. Dipam focuses on scaling the forum's impact, streamlining operational frameworks, and mentoring leadership teams to create sustainable professional pathways for local communities."
               },
-              member4: {
+              rahul: {
                 name: "Rahul Chettri",
                 role: "Head of Operations",
                 desc: "Building digital confidence among rural youth through practical technology training.",
                 bio: "Rahul Chettri leads the Data & Technology track at PKF, helping rural youth navigate the digital world with confidence. From basic IT literacy to AI tools and web development, he designs learning experiences that are practical, jargon-free and deeply relevant to rural contexts."
               },
-              member5: {
+              bina: {
                 name: "Bina Oraon",
                 role: "Data Advisor",
                 desc: "Guiding data strategy and evidence-based decision making across programs.",
                 bio: "Bina Oraon serves as Data Advisor for Pally Karigori Foundation, bringing expertise in data collection, analysis and community research. She helps the foundation make evidence-based decisions to maximise impact in rural communities."
               },
-              member6: {
+              mrinmoy: {
                 name: "Mrinnmoy",
                 role: "Public Health Research",
                 desc: "Leading public health research and community wellness initiatives.",
                 bio: "Mrinnmoy leads public health research at Pally Karigori Foundation, focusing on understanding the health challenges of rural communities. His work informs the Foundation's wellness programs and ensures they address real grassroots health needs."
               },
-              bina: {
-                name: "You",
-                role: "Data Advisor",
-                desc: "Guiding data strategy and evidence-based decision making across programs.",
-                bio: "You Oraon serves as Data Advisor for Pally Karigori Foundation, bringing expertise in data collection, analysis and community research. She helps the foundation make evidence-based decisions to maximise impact in rural communities."
-              },
-              mrinnmoy: {
-                name: "You",
-                role: "Public Health Research",
-                desc: "Leading public health research and community wellness initiatives.",
-                bio: "Mrinnmoy leads public health research at Pally Karigori Foundation, focusing on understanding the health challenges of rural communities. His work informs the Foundation's wellness programs and ensures they address real grassroots health needs."
-              },
-              debasmita: {
-                name: "You",
+              jagyoseni: {
+                name: "Jagyoseni Mondal",
                 role: "Humanities Advisor",
                 desc: "Bringing a humanities perspective to curriculum design and community engagement.",
-                bio: "Debasmita serves as Humanities Advisor at Pally Karigori Foundation, ensuring that cultural context, history and human values are woven into every program. Her background in humanities enriches the Foundation's approach to rural education and development."
+                bio: "Jagyoseni Mondal serves as Humanities Advisor at Pally Karigori Foundation, ensuring that cultural context, history and human values are woven into every program. Her background in humanities enriches the Foundation's approach to rural education and development."
               },
-              surja: {
-                name: "You",
+              monsa: {
+                name: "Monsa Hilora",
                 role: "Research Advisor",
                 desc: "Steering research initiatives and academic partnerships for the Foundation.",
-                bio: "Surja Basu is the Research Advisor at Pally Karigori Foundation, guiding research methodology and ensuring the Foundation's work is grounded in rigorous evidence. He bridges academic knowledge with ground-level community practice."
+                bio: "Monsa Hilora serves as Research Advisor at Pally Karigori Foundation, guiding research methodology and ensuring the Foundation's work is grounded in rigorous evidence. He bridges academic knowledge with ground-level community practice."
+              },
+              debasmita: {
+                name: "Debasmita Ghosh",
+                role: "Advisor",
+                desc: "Advisor in local knowledge archive.",
+                bio: "Debasmita Ghosh serves as an Advisor in the Local Knowledge Archive at Pally Karigori Foundation, documenting and preserving traditional wisdom."
               }
             }
           },

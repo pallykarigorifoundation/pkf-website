@@ -61,11 +61,11 @@ const members: TeamMember[] = [
     instagram: "https://www.instagram.com/subhendukundu/",
   },
   {
-    id: "member3",
-    nameKey: "team.members.member3.name",
-    roleKey: "team.members.member3.role",
-    descKey: "team.members.member3.desc",
-    bioKey: "team.members.member3.bio",
+    id: "dipam",
+    nameKey: "team.members.dipam.name",
+    roleKey: "team.members.dipam.role",
+    descKey: "team.members.dipam.desc",
+    bioKey: "team.members.dipam.bio",
     image: "https://res.cloudinary.com/dfuti9ltx/image/upload/q_auto/f_auto/v1781161289/deepom_kxh2wu.webp",
     initials: "AM",
     locationKey: "team.locations.plassey_nadia",
@@ -75,11 +75,11 @@ const members: TeamMember[] = [
     instagram: "https://www.instagram.com/_dipam.chakraborty_/",
   },
   {
-    id: "member4",
-    nameKey: "team.members.member4.name",
-    roleKey: "team.members.member4.role",
-    descKey: "team.members.member4.desc",
-    bioKey: "team.members.member4.bio",
+    id: "rahul",
+    nameKey: "team.members.rahul.name",
+    roleKey: "team.members.rahul.role",
+    descKey: "team.members.rahul.desc",
+    bioKey: "team.members.rahul.bio",
     image: "https://res.cloudinary.com/dfuti9ltx/image/upload/q_auto/f_auto/v1781161289/rahul_qfppg4.webp",
     initials: "PD",
     locationKey: "team.locations.darjeeling",
@@ -94,23 +94,47 @@ const members: TeamMember[] = [
     roleKey: "team.members.bina.role",
     descKey: "team.members.bina.desc",
     bioKey: "team.members.bina.bio",
-    image: "",
-    initials: "YOU",
+    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781690876/bina_c6dtx1.webp",
+    initials: "Bina",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
     skillKeys: ["team.skills_list.data_advisory", "team.skills_list.analysis", "team.skills_list.rural_dev"],
   },
   {
-    id: "mrinnmoy",
-    nameKey: "team.members.mrinnmoy.name",
-    roleKey: "team.members.mrinnmoy.role",
-    descKey: "team.members.mrinnmoy.desc",
-    bioKey: "team.members.mrinnmoy.bio",
-    image: "",
+    id: "mrinmoy",
+    nameKey: "team.members.mrinmoy.name",
+    roleKey: "team.members.mrinmoy.role",
+    descKey: "team.members.mrinmoy.desc",
+    bioKey: "team.members.mrinmoy.bio",
+    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781690880/mrinmoy_jau1tb.webp",
     initials: "YOU",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
     skillKeys: ["team.skills_list.public_health", "team.skills_list.research", "team.skills_list.comm_outreach"],
+  },
+  {
+    id: "jagyoseni",
+    nameKey: "team.members.jagyoseni.name",
+    roleKey: "team.members.jagyoseni.role",
+    descKey: "team.members.jagyoseni.desc",
+    bioKey: "team.members.jagyoseni.bio",
+    image: "https://res.cloudinary.com/dktxqkkky/image/upload/v1781690878/Jagyoseni_1_n2e7ax.webp",
+    initials: "YOU",
+    locationKey: "team.locations.plassey_nadia",
+    joinYearKey: "team.year_2026",
+    skillKeys: ["team.skills_list.humanities", "team.skills_list.research", "team.skills_list.education"],
+  },
+  {
+    id: "monsa",
+    nameKey: "team.members.monsa.name",
+    roleKey: "team.members.monsa.role",
+    descKey: "team.members.monsa.desc",
+    bioKey: "team.members.monsa.bio",
+    image: "https://res.cloudinary.com/dktxqkkky/image/upload/f_auto,q_auto/monsa_xrseuf",
+    initials: "YOU",
+    locationKey: "team.locations.plassey_nadia",
+    joinYearKey: "team.year_2026",
+    skillKeys: ["team.skills_list.research", "team.skills_list.strategic_oversight", "team.skills_list.rural_dev"],
   },
   {
     id: "debasmita",
@@ -119,22 +143,10 @@ const members: TeamMember[] = [
     descKey: "team.members.debasmita.desc",
     bioKey: "team.members.debasmita.bio",
     image: "",
-    initials: "YOU",
+    initials: "DG",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.humanities", "team.skills_list.research", "team.skills_list.education"],
-  },
-  {
-    id: "surja",
-    nameKey: "team.members.surja.name",
-    roleKey: "team.members.surja.role",
-    descKey: "team.members.surja.desc",
-    bioKey: "team.members.surja.bio",
-    image: "",
-    initials: "YOU",
-    locationKey: "team.locations.plassey_nadia",
-    joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.research", "team.skills_list.strategic_oversight", "team.skills_list.rural_dev"],
+    skillKeys: ["team.skills_list.research", "team.skills_list.rural_dev"],
   },
 ];
 
@@ -369,160 +381,7 @@ function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => v
 export default function TeamSection() {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const [activeModal, setActiveModal] = useState<TeamMember | null>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const isAnimatingRef = useRef(false);
-  const manualTweenRef = useRef<gsap.core.Tween | null>(null);
-
-  // Double it for seamless infinite loop
-  const doubledItems = [...members, ...members];
-
-  const getJumpDistance = (container: HTMLDivElement) => {
-    const children = container.children;
-    const setLength = members.length;
-    if (children.length >= setLength * 2) {
-      const firstChild = children[0] as HTMLElement;
-      const duplicateFirstChild = children[setLength] as HTMLElement;
-      if (firstChild && duplicateFirstChild) {
-        return duplicateFirstChild.offsetLeft - firstChild.offsetLeft;
-      }
-    }
-    return container.scrollWidth / 2;
-  };
-
-  // Auto scroll effect: right to left (cards move left, scrollLeft increases)
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    let animationFrameId: number;
-
-    const updateScroll = () => {
-      if (!isHovered && !isAnimatingRef.current) {
-        container.scrollLeft += 0.8;
-
-        const jumpDist = getJumpDistance(container);
-        if (jumpDist > 0) {
-          if (container.scrollLeft >= jumpDist + 50) {
-            container.scrollLeft -= jumpDist;
-          }
-        }
-      }
-      animationFrameId = requestAnimationFrame(updateScroll);
-    };
-
-    animationFrameId = requestAnimationFrame(updateScroll);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isHovered]);
-
-  // Set initial scroll to center and handle wrapping on manual scroll (touch/swipe)
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const initScroll = () => {
-      const jumpDist = getJumpDistance(container);
-      if (jumpDist > 0) {
-        container.scrollLeft = jumpDist;
-      }
-    };
-
-    // Delay slightly to allow layout calculations
-    requestAnimationFrame(initScroll);
-
-    const handleScroll = () => {
-      if (isAnimatingRef.current) return;
-      const jumpDist = getJumpDistance(container);
-      if (jumpDist <= 0) return;
-
-      if (container.scrollLeft <= 10) {
-        container.scrollLeft += jumpDist;
-      } else if (container.scrollLeft >= jumpDist + 50) {
-        container.scrollLeft -= jumpDist;
-      }
-    };
-
-    const handleResize = () => {
-      initScroll();
-    };
-
-    container.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      container.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const handlePrev = () => {
-    const container = containerRef.current;
-    if (!container) return;
-    const cardWidth = container.querySelector(".team-card")?.clientWidth || 310;
-    const gap = 24;
-    const scrollAmount = cardWidth + gap;
-    const targetScrollLeft = container.scrollLeft - scrollAmount;
-
-    isAnimatingRef.current = true;
-
-    if (manualTweenRef.current) {
-      manualTweenRef.current.kill();
-    }
-
-    const scrollObj = { value: container.scrollLeft };
-    manualTweenRef.current = gsap.to(scrollObj, {
-      value: targetScrollLeft,
-      duration: 0.6,
-      ease: "power2.out",
-      onUpdate: () => {
-        container.scrollLeft = scrollObj.value;
-        const jumpDist = getJumpDistance(container);
-        if (container.scrollLeft <= 10) {
-          container.scrollLeft += jumpDist;
-          scrollObj.value += jumpDist;
-        }
-      },
-      onComplete: () => {
-        isAnimatingRef.current = false;
-        manualTweenRef.current = null;
-      }
-    });
-  };
-
-  const handleNext = () => {
-    const container = containerRef.current;
-    if (!container) return;
-    const cardWidth = container.querySelector(".team-card")?.clientWidth || 310;
-    const gap = 24;
-    const scrollAmount = cardWidth + gap;
-    const targetScrollLeft = container.scrollLeft + scrollAmount;
-
-    isAnimatingRef.current = true;
-
-    if (manualTweenRef.current) {
-      manualTweenRef.current.kill();
-    }
-
-    const scrollObj = { value: container.scrollLeft };
-    manualTweenRef.current = gsap.to(scrollObj, {
-      value: targetScrollLeft,
-      duration: 0.6,
-      ease: "power2.out",
-      onUpdate: () => {
-        container.scrollLeft = scrollObj.value;
-        const jumpDist = getJumpDistance(container);
-        if (container.scrollLeft >= jumpDist + 50) {
-          container.scrollLeft -= jumpDist;
-          scrollObj.value -= jumpDist;
-        }
-      },
-      onComplete: () => {
-        isAnimatingRef.current = false;
-        manualTweenRef.current = null;
-      }
-    });
-  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -540,15 +399,6 @@ export default function TeamSection() {
 
   return (
     <>
-      <style>{`
-        .scrollbar-none::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-none {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
       <section ref={sectionRef} id="team" className="bg-cream dark:bg-black py-16 lg:py-24 overflow-hidden">
         <div className="w-full">
           {/* Header */}
@@ -568,114 +418,73 @@ export default function TeamSection() {
             </div>
           </div>
 
-          {/* Horizontal Slideshow */}
-          <div className="relative w-full overflow-hidden">
-            {/* Left fade gradient */}
-            <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r from-cream to-transparent dark:from-black z-10 pointer-events-none" />
-            
-            <div
-              ref={containerRef}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              className="flex gap-6 overflow-x-auto scrollbar-none py-6 px-8 md:px-16 select-none items-stretch"
-            >
-              {doubledItems.map((member, index) => {
-                const cardImageSrc = member.image
-                  ? cloudinaryTransform(member.image, CARD_TRANSFORMS)
-                  : "";
+          {/* Grid Layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 px-8 lg:px-16 py-6 max-w-5xl mx-auto">
+            {members.map((member) => {
+              const cardImageSrc = member.image
+                ? cloudinaryTransform(member.image, CARD_TRANSFORMS)
+                : "";
 
-                return (
-                  <button
-                    key={`${member.id}-${index}`}
-                    onClick={() => setActiveModal(member)}
-                    className="team-card group text-left rounded-[20px] overflow-hidden transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-lime/20 bg-zinc-900 hover:bg-lime-light w-[280px] sm:w-[310px] md:w-[330px] flex-shrink-0"
-                  >
-                    <div className="p-4 flex flex-col gap-4 h-full">
-                      {/* Name */}
-                      <div className="flex flex-col gap-0.5">
-                        <h3 className="font-display text-xl font-bold text-white group-hover:text-zinc-900 leading-tight transition-colors duration-300 truncate">
-                          {t(member.nameKey)}
-                        </h3>
-                      </div>
+              return (
+                <button
+                  key={member.id}
+                  onClick={() => setActiveModal(member)}
+                  className="team-card group text-left rounded-[20px] overflow-hidden transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-lime/20 bg-zinc-900 hover:bg-lime-light w-full max-w-[280px] sm:max-w-[300px] mx-auto"
+                >
+                  <div className="p-4 flex flex-col gap-4 h-full">
+                    {/* Name */}
+                    <div className="flex flex-col gap-0.5">
+                      <h3 className="font-display text-xl font-bold text-white group-hover:text-zinc-900 leading-tight transition-colors duration-300 truncate">
+                        {t(member.nameKey)}
+                      </h3>
+                    </div>
 
-                      {/* Photo */}
-                      <div className="relative rounded-[14px] overflow-hidden w-full aspect-[3/4]">
-                        <div className="w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-90">
-                          {cardImageSrc ? (
-                            <img
-                              src={cardImageSrc}
-                              alt={t(member.nameKey)}
-                              loading="lazy"
-                              decoding="async"
-                              width={600}
-                              height={800}
-                              className="w-full h-full object-cover object-top opacity-60 group-hover:opacity-100 transition-opacity duration-500"
-                            />
-                          ) : (
-                            <div className="w-full h-full bg-zinc-800 group-hover:bg-lime/20 transition-colors duration-300 flex items-center justify-center">
-                              <span className="font-display text-6xl font-bold text-zinc-600 group-hover:text-zinc-900/30 transition-colors duration-300">
-                                {member.initials}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Info rows */}
-                      <div className="flex flex-col gap-0 border-t border-white/10 group-hover:border-zinc-900/20 transition-all duration-300 overflow-hidden max-h-0 group-hover:max-h-40 group-hover:pt-3">
-                        <div className="flex items-center justify-between py-2 border-b border-white/8 group-hover:border-zinc-900/15">
-                          <span className="text-[0.6rem] font-bold tracking-[0.15em] uppercase text-white/40 group-hover:text-zinc-900/50 transition-colors duration-300">
-                            Position
-                          </span>
-                          <span className="text-xs font-semibold text-white/80 group-hover:text-zinc-900 transition-colors duration-300 text-right overflow-hidden whitespace-nowrap w-0 group-hover:w-auto group-hover:animate-typing">
-                            {t(member.roleKey)}
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between py-2">
-                          <span className="text-[0.6rem] font-bold tracking-[0.15em] uppercase text-white/40 group-hover:text-zinc-900/50 transition-colors duration-300">
-                            Info
-                          </span>
-                          <span className="text-xs font-semibold text-white/80 group-hover:text-zinc-900 transition-colors duration-300 text-right overflow-hidden whitespace-nowrap w-0 group-hover:w-auto group-hover:animate-typing-delay max-w-[60%] line-clamp-1">
-                            {t(member.descKey).split(".")[0]}
-                          </span>
-                        </div>
+                    {/* Photo */}
+                    <div className="relative rounded-[14px] overflow-hidden w-full aspect-[3/4]">
+                      <div className="w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-90">
+                        {cardImageSrc ? (
+                          <img
+                            src={cardImageSrc}
+                            alt={t(member.nameKey)}
+                            loading="lazy"
+                            decoding="async"
+                            width={600}
+                            height={800}
+                            className="w-full h-full object-cover object-top opacity-60 group-hover:opacity-100 transition-opacity duration-500"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-zinc-800 group-hover:bg-lime/20 transition-colors duration-300 flex items-center justify-center">
+                            <span className="font-display text-6xl font-bold text-zinc-600 group-hover:text-zinc-900/30 transition-colors duration-300">
+                              {member.initials}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </div>
-                  </button>
-                );
-              })}
-            </div>
 
-            {/* Right fade gradient */}
-            <div className="absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-l from-cream to-transparent dark:from-black z-10 pointer-events-none" />
-          </div>
-
-          {/* Navigation CTA Buttons */}
-          <div className="flex justify-center gap-4 mt-8">
-            <button
-              onClick={handlePrev}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              className="w-12 h-12 rounded-full border border-lime text-lime dark:text-lime-light hover:bg-lime hover:text-white transition-all flex items-center justify-center bg-transparent focus:outline-none focus:ring-2 focus:ring-lime"
-              aria-label="Previous Team Member"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="19" y1="12" x2="5" y2="12" />
-                <polyline points="12 19 5 12 12 5" />
-              </svg>
-            </button>
-            <button
-              onClick={handleNext}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              className="w-12 h-12 rounded-full border border-lime text-lime dark:text-lime-light hover:bg-lime hover:text-white transition-all flex items-center justify-center bg-transparent focus:outline-none focus:ring-2 focus:ring-lime"
-              aria-label="Next Team Member"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </button>
+                    {/* Info rows */}
+                    <div className="flex flex-col gap-0 border-t border-white/10 group-hover:border-zinc-900/20 transition-all duration-300 overflow-hidden max-h-0 group-hover:max-h-40 group-hover:pt-3">
+                      <div className="flex items-center justify-between py-2 border-b border-white/8 group-hover:border-zinc-900/15">
+                        <span className="text-[0.6rem] font-bold tracking-[0.15em] uppercase text-white/40 group-hover:text-zinc-900/50 transition-colors duration-300">
+                          Position
+                        </span>
+                        <span className="text-xs font-semibold text-white/80 group-hover:text-zinc-900 transition-colors duration-300 text-right overflow-hidden whitespace-nowrap w-0 group-hover:w-auto group-hover:animate-typing">
+                          {t(member.roleKey)}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between py-2">
+                        <span className="text-[0.6rem] font-bold tracking-[0.15em] uppercase text-white/40 group-hover:text-zinc-900/50 transition-colors duration-300">
+                          Info
+                        </span>
+                        <span className="text-xs font-semibold text-white/80 group-hover:text-zinc-900 transition-colors duration-300 text-right overflow-hidden whitespace-nowrap w-0 group-hover:w-auto group-hover:animate-typing-delay max-w-[60%] line-clamp-1">
+                          {t(member.descKey).split(".")[0]}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
