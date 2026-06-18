@@ -356,7 +356,7 @@ i18n
               behala_kolkata: "Behala, Kolkata"
             },
             skills_list: {
-              comm_outreach: "M.A VisComm",
+              comm_outreach: "M.A Design",
               prog_design: "B.A (Phil)",
               rural_dev: "M.Phil",
               curr_design: "BCA",
@@ -368,11 +368,11 @@ i18n
               frontend_develop: "MCA",
               tech_training: "MBA",
               ai_tools: "M.Tech",
-              data_advisory: "B.Sc",
-              analysis: "M.A",
-              public_health: "MBBS",
+              data_advisory: "Ph",
+              analysis: "B.Sc Optometry",
+              public_health: "BHMS",
               research: "M.Phil",
-              humanities: "B.A"
+              humanities: "PhD Humanities"
             },
             members: {
               rabiul: {

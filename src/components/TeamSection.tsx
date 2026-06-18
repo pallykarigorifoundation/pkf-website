@@ -43,7 +43,7 @@ const members: TeamMember[] = [
     initials: "RI",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.comm_outreach", "team.skills_list.prog_design"],
+    skillKeys: ["team.skills_list.comm_outreach"],
     linkedin: "https://www.linkedin.com/in/ruralrabi/",
     instagram: "https://www.instagram.com/robichobi/",
   },
@@ -57,7 +57,7 @@ const members: TeamMember[] = [
     initials: "SK",
     locationKey: "team.locations.mirik_darjeeling",
     joinYearKey: "team.year_2026",
-    skillKeys: ["", ""],
+    skillKeys: ["team.skills_list.public_health"],
     instagram: "https://www.instagram.com/subhendukundu/",
   },
   {
@@ -70,7 +70,7 @@ const members: TeamMember[] = [
     initials: "AM",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.strategic_oversight", "team.skills_list.ai_tools"],
+    skillKeys: ["team.skills_list.ai_tools"],
     linkedin: "https://www.linkedin.com/in/dipamc/",
     instagram: "https://www.instagram.com/_dipam.chakraborty_/",
   },
@@ -98,7 +98,7 @@ const members: TeamMember[] = [
     initials: "Bina",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.skill_training", "team.skills_list.education"],
+    skillKeys: ["team.skills_list.education"],
   },
   {
     id: "mrinmoy",
@@ -122,7 +122,7 @@ const members: TeamMember[] = [
     initials: "YOU",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: ["team.skills_list.rural_dev", "team.skills_list.capacity_building"],
+    skillKeys: ["team.skills_list.capacity_building"],
   },
   {
     id: "monsa",
@@ -134,7 +134,7 @@ const members: TeamMember[] = [
     initials: "YOU",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys: [""],
+    skillKeys: ["team.skills_list.analysis"],
   },
   {
     id: "debasmita",
@@ -146,7 +146,7 @@ const members: TeamMember[] = [
     initials: "DG",
     locationKey: "team.locations.plassey_nadia",
     joinYearKey: "team.year_2026",
-    skillKeys:  [""],
+    skillKeys:  ["team.skills_list.humanities"],
   },
 ];
 
