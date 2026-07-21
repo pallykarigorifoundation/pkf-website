@@ -34,7 +34,7 @@ i18n
             tag: "Mirik, Darjeeling · April 2026",
             title: "Pally Karigori",
             skill_forum: "Foundation",
-            tagline: "Where traditional wisdom meets modern opportunity — bridging communities with skills that last.",
+            tagline: "Where traditional wisdom meets modern opportunity bridging communities with skills that last.",
             explore: "Explore the Initiative",
             view_courses: "View Courses",
             courses: "Courses",
